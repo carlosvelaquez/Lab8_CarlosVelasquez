@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -22,6 +23,8 @@ protected:
 
   vector<HabilidadPasiva*> habilidadesPasivas;
   vector<HabilidadEspecial*> habilidadesEspeciales;
+
+  int turnos;
 
 public:
   string getNombre();
@@ -52,6 +55,14 @@ public:
   void setDefensaMagica(float);
   void setDefensaFisica(float);
 
+  int getTurnos();
+
   vector<HabilidadPasiva*> getHabilidadesPasivas();
   vector<HabilidadEspecial*> getHabilidadesEspeciales();
+
+  friend ostream& operator<< (ostream& output, const Luchador& luch){
+    output << luch.getNombre();
+    return output;
+  }
+
 };

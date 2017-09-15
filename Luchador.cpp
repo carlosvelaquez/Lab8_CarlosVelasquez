@@ -88,6 +88,10 @@ void Luchador::setDefensaFisica(float nDefensaFisica){
   defensaFisica = nDefensaFisica;
 }
 
+int Luchador::getTurnos(){
+  return turnos;
+}
+
 vector<HabilidadPasiva*> Luchador::getHabilidadesPasivas(){
   return habilidadesPasivas;
 }

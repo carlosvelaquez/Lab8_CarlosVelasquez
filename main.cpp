@@ -7,10 +7,14 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
 int main(){
+  srand((int)time(0));
+
   Lista luchadores;
   vector<string> clases;
 

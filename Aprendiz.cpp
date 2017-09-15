@@ -23,6 +23,6 @@ Aprendiz::Aprendiz(vector<string> nClases){
   if (!aprendio) {
     clasesAprendidas++;
     clases.push_back("Aprendiz");
-    habilidadesPasivas.push_back(new DobleExp());
+    habilidadesPasivas.push_back(new DobleExp(2));
   }
 }

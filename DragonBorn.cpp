@@ -23,7 +23,6 @@ DragonBorn::DragonBorn(vector<string> nClases){
   if (!aprendio) {
     clasesAprendidas++;
     clases.push_back("DragonBorn");
-    habilidadesEspeciales.push_back(new DobleAtaqueMagico());
-    habilidadesEspeciales.push_back(new DobleAtaqueFisico());
+    habilidadesEspeciales.push_back(new DobleAtaque(this));
   }
 }
