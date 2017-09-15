@@ -6,4 +6,6 @@ void HabilidadEspecial::aplicar(Luchador* luchador){
   luchador->setAtaqueFisico(luchador->getAtaqueFisico() + deltaAtaqueFisico);
   luchador->setDefensaMagica(luchador->getDefensaMagica() + deltaDefensaMagica);
   luchador->setDefensaFisica(luchador->getDefensaFisica() + deltaDefensaFisica);
+
+  usada = true;
 }

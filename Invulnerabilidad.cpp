@@ -23,5 +23,5 @@ void Invulnerabilidad::monitorearTurnos(int turnos, Luchador* luchador){
   luchador->setDefensaMagica(luchador->getDefensaMagica() - deltaDefensaMagica);
   luchador->setDefensaFisica(luchador->getDefensaFisica() - deltaDefensaFisica);
 
-  std::cout << "La habilidad especial de "<< luchador.getNombre() << " dejó de hacer efecto." << '\n';
+  std::cout << "La habilidad especial de "<< luchador->getNombre() << " dejó de hacer efecto." << '\n';
 }

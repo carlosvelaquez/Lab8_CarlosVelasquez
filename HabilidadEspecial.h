@@ -1,4 +1,5 @@
 #pragma once
+#include "Luchador.h"
 
 class HabilidadEspecial{
 protected:

@@ -92,10 +92,22 @@ int Luchador::getTurnos(){
   return turnos;
 }
 
-vector<HabilidadPasiva*> Luchador::getHabilidadesPasivas(){
+int Luchador::getUltimoDano(){
+  return ultimoDano;
+}
+
+void Luchador::setTurnos(int nTurnos){
+  turnos = nTurnos;
+}
+
+void Luchador::setUltimoDano(int nDano){
+  ultimoDano = nDano;
+}
+
+vector<void*> Luchador::getHabilidadesPasivas(){
   return habilidadesPasivas;
 }
 
-vector<HabilidadEspecial*> Luchador::getHabilidadesEspeciales(){
+vector<void*> Luchador::getHabilidadesEspeciales(){
   return habilidadesEspeciales;
 }

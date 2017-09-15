@@ -16,9 +16,10 @@ void DobleAtaque::aplicar(Luchador* luchador){
   luchador->setAtaqueMagico(luchador->getAtaqueMagico() + deltaAtaqueMagico);
   luchador->setAtaqueFisico(luchador->getAtaqueFisico() + deltaAtaqueFisico);
 
-
   thread monitorTurnos(&DobleAtaque::monitorearTurnos, this, turnos, luchador);
   monitorTurnos.detach();
+
+  usada = true;
 }
 
 void DobleAtaque::monitorearTurnos(int turnos, Luchador* luchador){
@@ -29,5 +30,5 @@ void DobleAtaque::monitorearTurnos(int turnos, Luchador* luchador){
   luchador->setAtaqueMagico(luchador->getAtaqueMagico() - deltaAtaqueMagico);
   luchador->setAtaqueFisico(luchador->getAtaqueFisico() - deltaAtaqueFisico);
 
-  std::cout << "La habilidad especial de "<< luchador.getNombre() << " dejó de hacer efecto." << '\n';
+  std::cout << "La habilidad especial de "<< luchador->getNombre() << " dejó de hacer efecto." << '\n';
 }

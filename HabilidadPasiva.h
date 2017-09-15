@@ -1,8 +1,9 @@
 #pragma once
+#include "Luchador.h"
 
 class HabilidadPasiva{
 protected:
-  multiplicadorExp;
+  int multiplicadorExp;
 public:
-  virtual aplicar(Luchador*, int);
+  virtual void aplicar(Luchador*, int);
 };
