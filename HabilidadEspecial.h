@@ -1,7 +1,7 @@
 #pragma once
 #include "Luchador.h"
 
-class HabilidadEspecial{
+class HabilidadEspecial : public Habilidad{
 protected:
   bool usada = false;
   int deltaHP = 0;

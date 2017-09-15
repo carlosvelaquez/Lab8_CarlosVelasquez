@@ -1,7 +1,7 @@
 #pragma once
 #include "Luchador.h"
 
-class HabilidadPasiva{
+class HabilidadPasiva : public Habilidad{
 protected:
   int multiplicadorExp;
 public:

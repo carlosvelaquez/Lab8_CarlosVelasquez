@@ -104,10 +104,10 @@ void Luchador::setUltimoDano(int nDano){
   ultimoDano = nDano;
 }
 
-vector<void*> Luchador::getHabilidadesPasivas(){
+vector<Habilidad*> Luchador::getHabilidadesPasivas(){
   return habilidadesPasivas;
 }
 
-vector<void*> Luchador::getHabilidadesEspeciales(){
+vector<Habilidad*> Luchador::getHabilidadesEspeciales(){
   return habilidadesEspeciales;
 }

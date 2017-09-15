@@ -4,6 +4,7 @@
 #include <iostream>
 //#include "HabilidadEspecial.h"
 //#include "HabilidadPasiva.h"
+#include "Habilidad.h"
 
 using namespace std;
 
@@ -23,8 +24,8 @@ protected:
   float defensaMagica;
   float defensaFisica;
 
-  vector<void*> habilidadesPasivas;
-  vector<void*> habilidadesEspeciales;
+  vector<Habilidad*> habilidadesPasivas;
+  vector<Habilidad*> habilidadesEspeciales;
 
   int turnos;
   int ultimoDano;
@@ -64,8 +65,8 @@ public:
   void setTurnos(int);
   void setUltimoDano(int);
 
-  vector<void*> getHabilidadesPasivas();
-  vector<void*> getHabilidadesEspeciales();
+  vector<Habilidad*> getHabilidadesPasivas();
+  vector<Habilidad*> getHabilidadesEspeciales();
 
   /*friend ostream& operator<< (ostream& output, const Luchador& luch){
     output << luch.getNombre();
