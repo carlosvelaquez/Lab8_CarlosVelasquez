@@ -579,7 +579,7 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
           luchador2->setDefendiendose(true);
           break;
         }case 4:{
-          cout << "¡" << luchador1->getNombre() << " ya usó su habilidad!" << endl;
+          cout << "¡" << luchador2->getNombre() << " ya usó su habilidad!" << endl;
           if (luchador2->usoHabilidad()) {
             continuar = false;
           }else{
@@ -648,6 +648,9 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
       break;
     }
   }
+
+  luchador1->setHabilidad(false);
+  luchador2->setHabilidad(false);
 
   archivoTexto.close();
 }
