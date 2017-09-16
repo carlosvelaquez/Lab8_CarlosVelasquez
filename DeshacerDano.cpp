@@ -1,6 +1,7 @@
 #include "DeshacerDano.h"
 
 DeshacerDano::DeshacerDano(){
+  nombre = "Deshacer Daño";
   deltaHP = 0;
 }
 

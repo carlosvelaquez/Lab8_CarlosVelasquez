@@ -1,6 +1,7 @@
 #include "DobleAtaque.h"
 
 DobleAtaque::DobleAtaque(Luchador* luchador){
+  nombre = "Doble Ataque";
   int r = rand();
 
   if (r%2 == 0) {

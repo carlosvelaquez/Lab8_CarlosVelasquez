@@ -1,6 +1,7 @@
 #include "Invulnerabilidad.h"
 
 Invulnerabilidad::Invulnerabilidad(){
+  nombre = "Invulnerabilidad";
   deltaDefensaMagica = 1;
   deltaDefensaFisica = 1;
 }

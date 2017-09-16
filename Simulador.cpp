@@ -345,7 +345,12 @@ void Simulador::iniciarSimulacion(){
     luchador1 = luchadores->at(op1);
     luchador2 = luchadores->at(op2);
 
-    simular(luchador1, luchador2);
+    if (luchador1 == luchador2) {
+      cout << "[ERROR] No puede poner a un luchador a combatirse a si mismo." << endl;
+    }else{
+      simular(luchador1, luchador2);
+    }
+
   }
 
 }
@@ -452,7 +457,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             cout << "Habilidades de " << luchador1->getNombre() << endl;
 
             for (int i = 0; i < luchador1->getHabilidadesEspeciales().size(); i++) {
-              cout << i << ". " << (typeid(luchador1->getHabilidadesEspeciales().at(i))).name() << endl;
+              cout << i << ". " << (luchador1->getHabilidadesEspeciales().at(i))->getNombre() << endl;
+              //cout << i << ". " << (typeid(luchador1->getHabilidadesEspeciales().at(i))).name() << endl;
             }
 
             cout << endl << "¿Que habilidad desea usar? - ";
@@ -491,7 +497,13 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
       cout << "¡" << luchador1->getNombre() << " ha ganado " << luchador2->getExpEntregada() << " EXP!" << endl;
       archivoTexto << "¡" << luchador1->getNombre() << " ha ganado " << luchador2->getExpEntregada() << " EXP!" << endl;
 
-      luchador1->setExp(luchador1->getExp() + luchador2->getExpEntregada());
+      if (luchador1->getHabilidadesPasivas().size() > 0) {
+        cout << "¡La habilidad pasiva de " << luchador1->getNombre() << " le otorga " << luchador2->getExpEntregada() << " EXP adicionales!" << endl;
+        archivoTexto << "¡La habilidad pasiva de " << luchador1->getNombre() << " le otorga " << luchador2->getExpEntregada() << " EXP adicionales!" << endl;
+        luchador1->setExp(luchador2->getExp() + (luchador2->getExpEntregada()*2));
+      }else{
+        luchador1->setExp(luchador1->getExp() + luchador2->getExpEntregada());
+      }
       break;
     }
 
@@ -581,7 +593,7 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             cout << "Habilidades de " << luchador2->getNombre() << endl;
 
             for (int i = 0; i < luchador2->getHabilidadesEspeciales().size(); i++) {
-              cout << i << ". " << (typeid(luchador2->getHabilidadesEspeciales().at(i))).name() << endl;
+              cout << i << ". " << (luchador2->getHabilidadesEspeciales().at(i))->getNombre() << endl;
             }
 
             cout << endl << "¿Que habilidad desea usar? - ";
@@ -619,7 +631,13 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
       cout << "¡" << luchador2->getNombre() << " ha ganado " << luchador1->getExpEntregada() << " EXP!" << endl;
       archivoTexto << "¡" << luchador2->getNombre() << " ha ganado " << luchador1->getExpEntregada() << " EXP!" << endl;
 
-      luchador2->setExp(luchador2->getExp() + luchador1->getExpEntregada());
+      if (luchador2->getHabilidadesPasivas().size() > 0) {
+        cout << "¡La habilidad pasiva de " << luchador2->getNombre() << " le otorga " << luchador1->getExpEntregada() << " EXP adicionales!" << endl;
+        archivoTexto << "¡La habilidad pasiva de " << luchador2->getNombre() << " le otorga " << luchador1->getExpEntregada() << " EXP adicionales!" << endl;
+        luchador2->setExp(luchador2->getExp() + (luchador1->getExpEntregada()*2));
+      }else{
+        luchador2->setExp(luchador2->getExp() + luchador1->getExpEntregada());
+      }
       break;
     }
   }
