@@ -6,6 +6,8 @@ Lista::Lista(){
 }
 
 void Lista::anadir(Luchador* nLuchador){
+  verificar();
+
   nodo* temp = new nodo;
   temp->datos = nLuchador;
   temp->next = NULL;
@@ -13,8 +15,9 @@ void Lista::anadir(Luchador* nLuchador){
   if (cabeza == NULL) {
     cabeza = temp;
     cola = temp;
-    temp = NULL;
-
+  }else if (cabeza->next == NULL){
+    cabeza->next = temp;
+    cola = temp;
   }else{
     cola->next = temp;
     cola = temp;
@@ -31,6 +34,7 @@ void Lista::eliminarNodo(int indice){
   if (indice == 1) {
     if (cabeza->next == NULL) {
       cabeza = NULL;
+      cola = NULL;
     }else{
       cabeza = cabeza->next;
     }
@@ -53,6 +57,7 @@ void Lista::eliminarNodo(int indice){
 
   }
 
+  verificar();
 }
 
 Luchador* Lista::at(int indice){
@@ -89,4 +94,15 @@ int Lista::size(){
   }
 
   return contador;
+}
+
+void Lista::verificar(){
+  if (cola == NULL && cabeza != NULL) {
+    cola = cabeza;
+  }
+
+  if (cabeza == NULL && cola != NULL){
+    cabeza = cola;
+  }
+
 }

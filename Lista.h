@@ -17,6 +17,7 @@ public:
   void eliminarNodo(int);
   Luchador* at(int);
   int size();
+  void verificar();
 
   Luchador* operator[] (int indice){
     return at(indice);
