@@ -96,12 +96,28 @@ int Luchador::getUltimoDano(){
   return ultimoDano;
 }
 
+bool Luchador::isDefendiendose(){
+  return defendiendose;
+}
+
+bool Luchador::usoHabilidad(){
+  return habilidad;
+}
+
 void Luchador::setTurnos(int nTurnos){
   turnos = nTurnos;
 }
 
 void Luchador::setUltimoDano(int nDano){
   ultimoDano = nDano;
+}
+
+void Luchador::setDefendiendose(bool nDef){
+  defendiendose = nDef;
+}
+
+void Luchador::setHabilidad(bool nHabilidad){
+  habilidad = nHabilidad;
 }
 
 vector<Habilidad*> Luchador::getHabilidadesPasivas(){

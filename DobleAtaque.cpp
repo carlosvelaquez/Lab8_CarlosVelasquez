@@ -30,5 +30,5 @@ void DobleAtaque::monitorearTurnos(int turnos, Luchador* luchador){
   luchador->setAtaqueMagico(luchador->getAtaqueMagico() - deltaAtaqueMagico);
   luchador->setAtaqueFisico(luchador->getAtaqueFisico() - deltaAtaqueFisico);
 
-  std::cout << "La habilidad especial de "<< luchador->getNombre() << " dejó de hacer efecto." << '\n';
+  cout <<  endl << "La habilidad especial de "<< luchador->getNombre() << " dejó de hacer efecto." << endl;
 }

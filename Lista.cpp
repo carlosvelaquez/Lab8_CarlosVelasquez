@@ -27,7 +27,7 @@ void Lista::eliminarNodo(int indice){
 
   actual = cabeza;
 
-  for (size_t i = 1; i < indice; i++) {
+  for (int i = 1; i < indice; i++) {
     anterior = actual;
     actual = actual->next;
   }

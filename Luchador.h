@@ -29,6 +29,8 @@ protected:
 
   int turnos;
   int ultimoDano;
+  bool defendiendose;
+  bool habilidad;
 
 public:
   string getNombre();
@@ -61,9 +63,13 @@ public:
 
   int getTurnos();
   int getUltimoDano();
+  bool isDefendiendose();
+  bool usoHabilidad();
 
   void setTurnos(int);
   void setUltimoDano(int);
+  void setDefendiendose(bool);
+  void setHabilidad(bool);
 
   vector<Habilidad*> getHabilidadesPasivas();
   vector<Habilidad*> getHabilidadesEspeciales();

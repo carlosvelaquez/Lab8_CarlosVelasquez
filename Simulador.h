@@ -8,6 +8,7 @@
 #include "Lista.h"
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 
@@ -20,4 +21,7 @@ public:
   void comenzar();
   int menu();
   void listarLuchadores();
+  void iniciarSimulacion();
+  void simular(Luchador*, Luchador*);
+  void mostrarStats(Luchador*, Luchador*);
 };
