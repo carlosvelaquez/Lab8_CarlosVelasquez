@@ -24,15 +24,29 @@ void Lista::anadir(Luchador* nLuchador){
 void Lista::eliminarNodo(int indice){
   nodo* actual;
   nodo* anterior;
+  bool isNull = false;
 
   actual = cabeza;
+  if (indice == 1) {
+    cabeza = NULL;
+    cola = NULL;
+  }else{
+    for (int i = 1; i <= indice; i++) {
+      anterior = actual;
+      if (actual->next == NULL) {
+        isNull = true;
+        break;
+      }
+      actual = actual->next;
+    }
 
-  for (int i = 1; i < indice; i++) {
-    anterior = actual;
-    actual = actual->next;
+    if (isNull) {
+      anterior->next = NULL;
+    }else{
+      anterior->next = actual->next;
+    }
   }
 
-  anterior->next = actual->next;
 }
 
 Luchador* Lista::at(int indice){

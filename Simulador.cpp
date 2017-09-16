@@ -87,7 +87,7 @@ void Simulador::comenzar(){
       case 2:{
         bool salirSel = false;
         Luchador* luchadorSeleccionado;
-        int op;
+        int op2;
 
         if (luchadores->size() < 1) {
           cout << "No hay luchadores para modificar." << endl;
@@ -99,15 +99,15 @@ void Simulador::comenzar(){
           listarLuchadores();
           cout << endl << "¿Que luchador desea modificar? - ";
 
-          cin >> op;
+          cin >> op2;
           cout << "------------------------------" << endl;
 
-          if (op > luchadores->size() || op < 1) {
+          if (op2 > luchadores->size() || op2 < 1) {
             salirSel = false;
             cout << "El número ingresado supera al tamaño de la lista." << endl;
             cout << "------------------------------" << endl;
           }else{
-            luchadorSeleccionado = luchadores->at(op);
+            luchadorSeleccionado = luchadores->at(op2);
           }
         }
 
@@ -131,9 +131,141 @@ void Simulador::comenzar(){
             cout << "Nombre modificado exitosamente." << endl;
             break;
           }
+          case 2:{
+            string nNombre = luchadorSeleccionado->getNombre();
+            int exp = luchadorSeleccionado->getExp();
+            bool salirSel2 = false;
+
+            while(!salirSel2){
+              salirSel2 = true;
+
+              cout << "Nueva Clase (Experiencia Requerida)" << endl
+              << "1. Aprendiz (400)" << endl
+              << "2. Guerrero (0)" << endl
+              << "3. Mago (200)" << endl
+              << "4. Alquimista (300)" << endl
+              << "5. DragonBorn (400)" << endl << endl
+              << "Ingrese el número de la opción que desea - ";
+
+              int op;
+              cin >> op;
+              cout << "------------------------------" << endl;
+
+
+              vector<string> s = luchadorSeleccionado->getClases();
+
+              switch (op) {
+                case 1:{
+                  if (exp < 400) {
+                    cout << "El luchador no tiene la experienca necesaria." << endl;
+                    cout << "------------------------------" << endl;
+
+                    salirSel2 = false;
+                    break;
+                  }
+
+                  luchadorSeleccionado = new Aprendiz(s);
+                  luchadorSeleccionado->setNombre(nNombre);
+                  luchadorSeleccionado->setExp(exp);
+                  break;
+                }
+                case 2:{
+                  if (exp < 0) {
+                    cout << "El luchador no tiene la experienca necesaria." << endl;
+                    cout << "------------------------------" << endl;
+
+                    salirSel2 = false;
+                    break;
+                  }
+
+                  luchadorSeleccionado = new Guerrero(s);
+                  luchadorSeleccionado->setNombre(nNombre);
+                  luchadorSeleccionado->setExp(exp);
+                  break;
+                }
+                case 3:{
+                  if (exp < 200) {
+                    cout << "El luchador no tiene la experienca necesaria." << endl;
+                    cout << "------------------------------" << endl;
+
+                    salirSel2 = false;
+                    break;
+                  }
+
+                  luchadorSeleccionado = new Mago(s);
+                  luchadorSeleccionado->setNombre(nNombre);
+                  luchadorSeleccionado->setExp(exp);
+                  break;
+                }
+                case 4:{
+                  if (exp < 300) {
+                    cout << "El luchador no tiene la experienca necesaria." << endl;
+                    cout << "------------------------------" << endl;
+
+                    salirSel2 = false;
+                    break;
+                  }
+
+                  luchadorSeleccionado = new Alquimista(s);
+                  luchadorSeleccionado->setNombre(nNombre);
+                  luchadorSeleccionado->setExp(exp);
+                  break;
+                }
+                case 5:{
+                  if (exp < 400) {
+                    cout << "El luchador no tiene la experienca necesaria." << endl;
+                    salirSel2 = false;
+                    break;
+                  }
+
+                  luchadorSeleccionado = new Mago(s);
+                  luchadorSeleccionado->setNombre(nNombre);
+                  luchadorSeleccionado->setExp(exp);
+                  break;
+                }
+                default:{
+                  cout << "------------------------------" << endl;
+                  cout << "Opción Inválida, por favor intente de nuevo." << endl;
+                  salirSel2 = false;
+                  break;
+                }
+              }
+            }
+
+            cout << "Clase cambiada exitosamente." << endl;
+            break;
+          }
+
           default:{
             cout << "Opción Inválida, por favor intente de nuevo." << endl;
             break;
+          }
+
+        }
+        break;
+      }
+      case 4:{
+        bool salirSel = false;
+        int op2;
+
+        if (luchadores->size() < 1) {
+          cout << "No hay luchadores para eliminar." << endl;
+          break;
+        }
+
+        while(!salirSel){
+          salirSel = true;
+          listarLuchadores();
+          cout << endl << "¿Que luchador desea modificar? - ";
+          cin >> op2;
+          cout << "------------------------------" << endl;
+
+          if (op2 < 1 || op2 > luchadores->size()) {
+            salirSel = false;
+            cout << "El número ingresado supera al tamaño de la lista.";
+          }else{
+            luchadores->eliminarNodo(op2);
+            cout << "Luchador eliminado." << endl;
           }
         }
         break;
@@ -142,11 +274,11 @@ void Simulador::comenzar(){
         listarLuchadores();
         break;
       }
-      case 4:{
+      case 5:{
         iniciarSimulacion();
         break;
       }
-      case 5:{
+      case 6:{
         salir = true;
         cout << "Saliendo..." << endl;
         cout << "------------------------------" << endl;
@@ -160,6 +292,7 @@ void Simulador::comenzar(){
   }
 }
 
+
 int Simulador::menu(){
   int opcion;
 
@@ -168,8 +301,9 @@ int Simulador::menu(){
   << "1. Agregar Luchador" << endl
   << "2. Modificar Luchador" << endl
   << "3. Listar Luchadores" << endl
-  << "4. Iniciar Simulación" << endl
-  << "5. Salir del Programa" << endl << endl
+  << "4. Eliminar Luchador" << endl
+  << "5. Iniciar Simulación" << endl
+  << "6. Salir del Programa" << endl << endl
   << "Ingrese el número de la opción que desea - ";
 
   cin >> opcion;
@@ -332,8 +466,10 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
     luchador2->setDefendiendose(false);
     luchador2->setTurnos(turno);
 
-    if (luchador1->getHP() < 1 || luchador2->getHP() < 1 ) {
-      termino = true;
+    if (luchador2->getHP() <= 0) {
+      cout << "¡" << luchador2->getNombre() << " ha muerto!" << endl;
+      cout << "¡" << luchador1->getNombre() << " ha ganado " << luchador2->getExpEntregada() << " EXP!" << endl;
+      luchador1->setExp(luchador1->getExp() + luchador2->getExpEntregada());
       break;
     }
 
@@ -438,17 +574,19 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
       }
     }
 
-    if (luchador1->getHP() < 1 || luchador2->getHP() < 1 ) {
-      termino = true;
-    }
-
     luchador1->setDefendiendose(false);
     luchador1->setTurnos(turno);
+
+    if (luchador1->getHP() <= 0) {
+      cout << "¡" << luchador1->getNombre() << " ha muerto!" << endl;
+      cout << "¡" << luchador2->getNombre() << " ha ganado " << luchador1->getExpEntregada() << " EXP!" << endl;
+      luchador2->setExp(luchador2->getExp() + luchador1->getExpEntregada());
+      break;
+    }
   }
 
   for (int i = 1; i <= luchadores->size(); i++) {
     if (luchadores->at(i)->getHP() <= 0) {
-      cout << "¡" << luchadores->at(i)->getNombre() << " ha muerto!" << endl;
       luchadores->eliminarNodo(i);
       break;
     }
