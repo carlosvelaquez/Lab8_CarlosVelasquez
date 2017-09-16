@@ -4,6 +4,7 @@
 #include "Mago.h"
 #include "DragonBorn.h"
 #include "Lista.h"
+#include "Simulador.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -17,6 +18,9 @@ int main(){
 
   Lista luchadores;
   vector<string> clases;
+
+  Simulador s(&luchadores);
+  s.comenzar();
 
   /*luchadores.anadir(new DragonBorn(clases));
   (luchadores.at(1))->setNombre("TEST");

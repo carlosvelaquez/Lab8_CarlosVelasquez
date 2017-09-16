@@ -1,5 +1,8 @@
-out: Luchador.o Alquimista.o Aprendiz.o DeshacerDano.o DobleAtaque.o DobleExp.o DragonBorn.o Guerrero.o HabilidadEspecial.o HabilidadPasiva.o Invulnerabilidad.o Mago.o Regeneracion.o Lista.o main.o Habilidad.o
-	g++ -pthread Luchador.o Alquimista.o Aprendiz.o DeshacerDano.o DobleAtaque.o DobleExp.o DragonBorn.o Guerrero.o HabilidadEspecial.o HabilidadPasiva.o Invulnerabilidad.o Mago.o Regeneracion.o Lista.o main.o Habilidad.o -o out
+out: Luchador.o Alquimista.o Aprendiz.o DeshacerDano.o DobleAtaque.o DobleExp.o DragonBorn.o Guerrero.o HabilidadEspecial.o HabilidadPasiva.o Invulnerabilidad.o Mago.o Regeneracion.o Lista.o main.o Habilidad.o Simulador.o
+	g++ -pthread Luchador.o Alquimista.o Aprendiz.o DeshacerDano.o DobleAtaque.o DobleExp.o DragonBorn.o Guerrero.o HabilidadEspecial.o HabilidadPasiva.o Invulnerabilidad.o Mago.o Regeneracion.o Lista.o main.o Habilidad.o Simulador.o -o out
+
+Simulador.o: Simulador.h Simulador.cpp
+	g++ -c -g Simulador.cpp
 
 Luchador.o: Luchador.h Luchador.cpp
 	g++ -c -g Luchador.cpp
