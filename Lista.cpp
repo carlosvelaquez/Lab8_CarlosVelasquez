@@ -27,24 +27,30 @@ void Lista::eliminarNodo(int indice){
   bool isNull = false;
 
   actual = cabeza;
+
   if (indice == 1) {
-    cabeza = NULL;
-    cola = NULL;
+    if (cabeza->next == NULL) {
+      cabeza = NULL;
+    }else{
+      cabeza = cabeza->next;
+    }
   }else{
-    for (int i = 1; i <= indice; i++) {
+    for (int i = 1; i < indice; i++) {
       anterior = actual;
+
       if (actual->next == NULL) {
+        cola = anterior;
         isNull = true;
         break;
+      }else{
+        actual = actual->next;
       }
-      actual = actual->next;
     }
 
-    if (isNull) {
-      anterior->next = NULL;
-    }else{
+    if (!isNull) {
       anterior->next = actual->next;
     }
+
   }
 
 }

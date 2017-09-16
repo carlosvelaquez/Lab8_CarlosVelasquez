@@ -351,6 +351,13 @@ void Simulador::iniciarSimulacion(){
 }
 
 void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
+  time_t now = time(0);
+  tm* localtm = localtime(&now);
+
+  ofstream archivoTexto;
+  string ruta = "Batalla_" + luchador1->getNombre() + "-vs.-" + luchador2->getNombre() + ".txt";
+  archivoTexto.open(ruta);
+
   bool termino = false;
   int turno = 0;
   int dano1 = 0;
@@ -383,6 +390,7 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             continuar = false;
           }else{
             cout << "¡" << luchador1->getNombre() << " ha usado su ataque mágico!" << endl;
+            archivoTexto << "¡" << luchador1->getNombre() << " ha usado su ataque mágico!" << endl;
             if (luchador2->isDefendiendose()) {
               dano2 = luchador1->getAtaqueMagico() - (luchador2->getDefensaMagica()*luchador1->getAtaqueMagico());
             }else{
@@ -390,6 +398,7 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             }
 
             cout << "¡" << luchador2->getNombre() << " toma " << dano2 << " de daño!" << endl;
+            archivoTexto << "¡" << luchador2->getNombre() << " toma " << dano2 << " de daño!" << endl;
             luchador2->setHP(luchador2->getHP()-dano2);
             luchador2->setUltimoDano(dano2);
           }
@@ -401,6 +410,7 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             continuar = false;
           }else{
             cout << "¡" << luchador1->getNombre() << " ha usado su ataque físico!" << endl;
+            archivoTexto << "¡" << luchador1->getNombre() << " ha usado su ataque físico!" << endl;
 
             if (luchador2->isDefendiendose()) {
               dano2 = luchador1->getAtaqueFisico() - (luchador2->getDefensaFisica()*luchador1->getAtaqueFisico());
@@ -409,6 +419,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             }
 
             cout << "¡" << luchador2->getNombre() << " toma " << dano2 << " de daño!" << endl;
+            archivoTexto << "¡" << luchador2->getNombre() << " toma " << dano2 << " de daño!" << endl;
+
             luchador2->setHP(luchador2->getHP()-dano2);
             luchador2->setUltimoDano(dano2);
           }
@@ -416,8 +428,12 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
         }
         case 3:{
           cout << "¡" << luchador1->getNombre() << " se está defendido!" << endl;
+          archivoTexto << "¡" << luchador1->getNombre() << " se está defendido!" << endl;
+
           int rec = (luchador1->getHP()*.45);
           cout << "¡" << luchador1->getNombre() << " recupera " << rec << " HP!" << endl;
+          archivoTexto << "¡" << luchador1->getNombre() << " recupera " << rec << " HP!" << endl;
+
           luchador1->setHP(luchador1->getHP() + rec);
           luchador1->setDefendiendose(true);
           break;
@@ -449,6 +465,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             }else{
               luchador1->setHabilidad(true);
               cout << "¡" << luchador1->getNombre() << " ha usado una habilidad!" << endl;
+              archivoTexto << "¡" << luchador1->getNombre() << " ha usado una habilidad!" << endl;
+
               ((HabilidadEspecial*) luchador1->getHabilidadesEspeciales().at(opc))->aplicar(luchador1);
             }
           }
@@ -468,7 +486,11 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
 
     if (luchador2->getHP() <= 0) {
       cout << "¡" << luchador2->getNombre() << " ha muerto!" << endl;
+      archivoTexto << "¡" << luchador2->getNombre() << " ha muerto!" << endl;
+
       cout << "¡" << luchador1->getNombre() << " ha ganado " << luchador2->getExpEntregada() << " EXP!" << endl;
+      archivoTexto << "¡" << luchador1->getNombre() << " ha ganado " << luchador2->getExpEntregada() << " EXP!" << endl;
+
       luchador1->setExp(luchador1->getExp() + luchador2->getExpEntregada());
       break;
     }
@@ -495,6 +517,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             continuar = false;
           }else{
             cout << "¡" << luchador2->getNombre() << " ha usado su ataque mágico!" << endl;
+            archivoTexto << "¡" << luchador2->getNombre() << " ha usado su ataque mágico!" << endl;
+
             if (luchador1->isDefendiendose()) {
               dano1 = luchador2->getAtaqueMagico() - (luchador1->getDefensaMagica()*luchador2->getAtaqueMagico());
             }else{
@@ -502,6 +526,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             }
 
             cout << "¡" << luchador1->getNombre() << " toma " << dano1 << " de daño!" << endl;
+            archivoTexto << "¡" << luchador1->getNombre() << " toma " << dano1 << " de daño!" << endl;
+
             luchador1->setHP(luchador1->getHP()-dano1);
             luchador1->setUltimoDano(dano1);
           }
@@ -513,6 +539,7 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             continuar = false;
           }else{
             cout << "¡" << luchador2->getNombre() << " ha usado su ataque físico!" << endl;
+            archivoTexto << "¡" << luchador2->getNombre() << " ha usado su ataque físico!" << endl;
 
             if (luchador1->isDefendiendose()) {
               dano1 = luchador2->getAtaqueFisico() - (luchador1->getDefensaFisica()*luchador2->getAtaqueFisico());
@@ -521,6 +548,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             }
 
             cout << "¡" << luchador1->getNombre() << " toma " << dano1 << " de daño!" << endl;
+            archivoTexto << "¡" << luchador1->getNombre() << " toma " << dano1 << " de daño!" << endl;
+
             luchador1->setHP(luchador1->getHP()-dano1);
             luchador1->setUltimoDano(dano1);
           }
@@ -528,8 +557,12 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
         }
         case 3:{
           cout << "¡" << luchador2->getNombre() << " se está defendido!" << endl;
+          archivoTexto << "¡" << luchador2->getNombre() << " se está defendido!" << endl;
+
           int rec = (luchador2->getHP()*.45);
           cout << "¡" << luchador2->getNombre() << " recupera " << rec << " HP!" << endl;
+          archivoTexto << "¡" << luchador2->getNombre() << " recupera " << rec << " HP!" << endl;
+
           luchador2->setHP(luchador2->getHP() + rec);
           luchador2->setDefendiendose(true);
           break;
@@ -561,6 +594,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
             }else{
               luchador2->setHabilidad(true);
               cout << "¡" << luchador2->getNombre() << " ha usado una habilidad!" << endl;
+              archivoTexto << "¡" << luchador2->getNombre() << " ha usado una habilidad!" << endl;
+
               ((HabilidadEspecial*) luchador2->getHabilidadesEspeciales().at(opc))->aplicar(luchador2);
             }
           }
@@ -579,7 +614,11 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
 
     if (luchador1->getHP() <= 0) {
       cout << "¡" << luchador1->getNombre() << " ha muerto!" << endl;
+      archivoTexto << "¡" << luchador1->getNombre() << " ha muerto!" << endl;
+
       cout << "¡" << luchador2->getNombre() << " ha ganado " << luchador1->getExpEntregada() << " EXP!" << endl;
+      archivoTexto << "¡" << luchador2->getNombre() << " ha ganado " << luchador1->getExpEntregada() << " EXP!" << endl;
+
       luchador2->setExp(luchador2->getExp() + luchador1->getExpEntregada());
       break;
     }
@@ -591,6 +630,8 @@ void Simulador::simular(Luchador* luchador1, Luchador* luchador2){
       break;
     }
   }
+
+  archivoTexto.close();
 }
 
 void Simulador::mostrarStats(Luchador* luchador1, Luchador* luchador2){

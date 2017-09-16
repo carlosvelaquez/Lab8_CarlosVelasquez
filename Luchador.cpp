@@ -9,6 +9,7 @@ int Luchador::getBatallasGanadas(){
 }
 
 int Luchador::getClasesAprendidas(){
+  clasesAprendidas = clases.size();
   return clasesAprendidas;
 }
 
